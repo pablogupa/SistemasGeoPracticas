@@ -33,13 +33,14 @@
             function Obtener() {
 
                 if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(Posicion(position.coords.latitude + "," + position.coords.longitude));
+                navigator.geolocation.getCurrentPosition(MiPosicion);
                 } else { 
                     x.innerHTML = "El navegador no dispone la capacidad de geolocalización";
                 }
             }
-            function Posicion(posicion) {
-                var imagenurl = "https://maps.googleapis.com/maps/api/staticmap?center=" + posicion + "&zoom=17&size=400x300&sensor=false&key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA";
+            function MiPosicion(posicion) {
+                var coordenadas = posicion.coords.latitude + "," + posicion.coords.longitude;
+                var imagenurl = "https://maps.googleapis.com/maps/api/staticmap?center=" + coordenadas + "&zoom=17&size=400x300&sensor=false&key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA";
                 document.getElementById("mapa").innerHTML = "<img src='"+imagenurl+"'>";
             }
         </script>
