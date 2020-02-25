@@ -23,6 +23,7 @@
                         <div class="d-flex justify-content-center">
                             <button onclick="Obtener()" class="btn d-flex justify-content-center btn-danger">Obtener</button>
                         </div>
+                        <br>
                         <div id="mapa"></div>
                     </div>
                 </div>
@@ -40,7 +41,7 @@
             }
             function MiPosicion(position) {
                 var coordenadas = position.coords.latitude + "," + position.coords.longitude;
-                var imagenurl = "https://maps.googleapis.com/maps/api/staticmap?center=" + coordenadas + "&zoom=13&size=700x400&sensor=false&key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA";
+                var imagenurl = "https://maps.googleapis.com/maps/api/staticmap?center=" + coordenadas + "&zoom=13&size=900x400&sensor=false&key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA";
                 document.getElementById("mapa").innerHTML = "<img src='"+imagenurl+"'>";
             }
         </script>
