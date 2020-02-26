@@ -39,7 +39,7 @@
                     navigator.geolocation.getCurrentPosition(function(position){
                         var pos={
                             lat = position.coords.latitude,
-                            lon = position.coords.longitude
+                            lng = position.coords.longitude
                         };
                         informacion.setPosition(pos);
                         informacion.setContent("TU LOCALIZACION <br> <img src='img.jpg'>");
