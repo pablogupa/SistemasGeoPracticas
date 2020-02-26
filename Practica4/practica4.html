@@ -19,7 +19,6 @@
                 <div class="row m-5">
                     <div class="col-12 p-5">
                         <h1 class="text-center">Mapa</h1>
-                        <p id="arre"></p>
                         <div class="d-flex justify-content-center">
                             <button onclick="Obtener()" class="btn d-flex justify-content-center btn-danger">Obtener</button>
                         </div>
@@ -30,17 +29,8 @@
             </div>
         </div>
         <script>
-            var x = document.getElementById("arre");
             function Obtener() {
-
-                if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(MiPosicion);
-                } else { 
-                    x.innerHTML = "El navegador no dispone la capacidad de geolocalización";
-                }
-            }
-            function MiPosicion(position) {
-                var coordenadas = position.coords.latitude + "," + position.coords.longitude;
+                var coordenadas = "21.152639,-101.711598";
                 var imagenurl = "https://maps.googleapis.com/maps/api/staticmap?center=" + coordenadas + "&zoom=13&size=900x400&sensor=false&key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA";
                 document.getElementById("mapa").innerHTML = "<img src='"+imagenurl+"'>";
             }
