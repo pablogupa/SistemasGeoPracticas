@@ -13,9 +13,12 @@
         }
     </style>
 </head>
-<body>
-    <div id="map"></div>
-
+<body class="bg-dark">
+    <div class="container-fluid">
+        <div class="container bg-white rounded shadow-lg">
+            <div id="map"></div>
+        </div>
+    </div>
     <script>
         function iniciaMapa(){
 
@@ -35,7 +38,7 @@
 
                     
                     informacion.setPosition(pos);
-                    informacion.setContent("Ya te localice, te estoy espiando, RUN <br> <img src='descarga.png'>");
+                    informacion.setContent("Esta es tu ubicacion <br> <img src='img.jpg'>");
                     informacion.open(map);
                     map.setCenter(pos);
 
