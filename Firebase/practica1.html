@@ -32,7 +32,8 @@
               appId: "1:241976430088:web:cbae3b5cb7453e7fbbcbbd"
             };
             // Initialize Firebase
-            const db = firebase.initializeApp(firebaseConfig);
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.firestore();
             const productoslista = document.querySelector("#list");
             
             db.collection('productos').onSnapshot( snapshot =>{
