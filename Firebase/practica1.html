@@ -9,13 +9,14 @@
     </head>
     
     <body class="bg-dark">
-
-        <form id="form">
-            <input type="text" name="nombre" placeholder="Nombre">
-            <input type="text" name="codigo" placeholder="Codigo">
-            <button type="submit">Agregar</button>
-        </form>
-        
+        <h1>Lista de Productos</h1>
+        <div class="row">
+            <form id="form">
+                <div class="col-md"><input type="text" name="nombre" placeholder="Nombre"></div>
+                <div class="col-sm"><input type="text" name="codigo" placeholder="Codigo"></div>
+                <div class="col-sm"><button type="submit">Agregar</button></div>
+            </form>
+        </div>
         <ul id="list"></ul>
 
         <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
@@ -33,10 +34,56 @@
             // Initialize Firebase
             const db = firebase.initializeApp(firebaseConfig);
             const productoslista = document.querySelector("#list");
-            db.collection('productos').get().then((snapshot) =>{
-                console.log(snapshot.docs);
+            
+            db.collection('productos').onSnapshot( snapshot =>{
+                let changes = snapshot.docChanges();
+                changes.forEach( change => { 
+                    if(change.type == "added"){
+                        renderProd(change.doc);
+                    }else if (change.type == "removed"){
+                        console.log(change.doc.id);
+                        let valorid = document.getElementById(change.doc.id);
+                        list.removeChild(valorid);
+                    }
+                });
             });
+
+            function renderProd(){
+                let li = document.createElement("li");
+                let nombre = document.createElement("span");
+                let codigo = document.createElement("span");
+                let borrar = document.createElement("button");
+
+                nombre.textContent = doc.data().nombre;
+                codigo.textContent = doc.data().codigo;
+                borrar.textContent = "Borrar";
+
+                li.setAttribute("id", doc.id);
+                li.appendChild(borrar);
+                li.appendChild(codigo);
+                li.appendChild(nombre);
+                    
+                productoslista.appendChild(li);
+                    
+                borrar.addEventListener("click", (e) => {
+                    let id = e.target.parentElement.getAttribute("id");
+                    db.collection("productos").doc(id).delete();
+                });
+            }
+
+            const formulario = document.querySelector("#form");
+            formulario.addEventListener("submit", (e) =>{
+                e.preventDefault();
+                db.collection("productos").add({
+                    nombre : formulario.nombre.value,
+                    codigo : formulario.codigo.value
+                });
+                formulario.nombre.value = "";
+                formulario.nombre.value = "";
+            });
+
         </script>
+
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
