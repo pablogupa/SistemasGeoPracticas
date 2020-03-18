@@ -125,7 +125,7 @@ position:absolute;
                     lng: posicion.coords.longitude
                 }
                 marker.setPosition(new google.maps.LatLng(posicion.coords.latitude, posicion.coords.longitude));
-                /*MOCIMIENTO DEL MAPA EN BASE A LA UBICACION*/
+                /*MOVIMIENTO DEL MAPA EN BASE A LA UBICACION*/
                 map.panTo(new google.maps.LatLng(posicion.coords.latitude, posicion.coords.longitude));
                 /*CENTRAMOS EL MAPA*/
                 map.setCenter(pos);
@@ -135,9 +135,6 @@ position:absolute;
         }
 
     </script>
-    
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBL_rCP3lkgspRRE29-Nx8N9yvdcoqvRo&callback&callback=initMap"
-        async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA&callback=crearMapa" async defer></script>
 </body>
 </html>
