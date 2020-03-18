@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        
+        #map {
+            height: 100%;
+        }
+
+        html, body {
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .background {
+         background-color:slategray;
+         }
+
+
+        .map-container-5{
+overflow:hidden;
+padding-bottom:56.25%;
+position:relative;
+height:0;
+}
+.map-container-5 iframe{
+left:0;
+top:0;
+height:100%;
+width:100%;
+position:absolute;
+}
+    </style>
+</head>
+<body class="bg-dark">
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 mb-4">
+      <div class="card card-cascade narrower">
+  
+        <div class="card-image" style="background-image: url(https://www.diariodemorelos.com/noticias/sites/default/files/field/image/La%20nueva%20actualización%20de%20Google%20Maps%20mostrará%20tu%20velocidad%20en%20tiempo%20real.jpg)">
+
+        <div class="text-white d-flex h-100 mask blue-gradient-rgba">
+            <div class="first-content align-self-center p-3">
+              <h3  class="text-dark card-title">Mapa</h3>
+            </div>
+            <div class="second-content align-self-center mx-auto text-center">
+              <i class="far fa-money-bill-alt fa-3x"></i>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+        <div class="card-body card-body-cascade text-center">
+  
+          <div id="map" class="z-depth-1-half map-container-5" style="height: 300px">
+            
+          </div>
+  
+        </div>
+  
+      </div>
+  
+    </div>
+
+    <div class="col-md-3"></div>
+
+  
+  </div>
+    
+    <script>
+
+        var coordenadas = {
+            lat: 0,
+            lng: 0
+        }
+
+        var propiedades = {
+            center: coordenadas,
+            zoom: 20
+        }
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), propiedades);
+
+            var marker = new google.maps.Marker({
+                position: { lat: 0, lng: 0 }
+            });
+
+            var icono = {
+                url: "https://i.pinimg.com/originals/92/f4/97/92f4972c3c3775da020024797165f2fb.gif",
+                scaledSize: new google.maps.Size(50, 50),
+                origin: new google.maps.Point(0,0),
+                anchor: new google.maps.Point(0,0)
+            };
+
+
+
+            var marker = new google.maps.Marker({
+                position: { lat: 0 , lng: 0},
+                icon: icono,
+                scaledSize: new google.maps.Size(50,50),
+                map: map
+            });
+
+            if (navigator.geolocation) {
+                setInterval(function(){
+                    moverPosicion(marker);
+                },3000);
+                moverPosicion(marker)
+            }
+        }
+
+        function moverPosicion(marker) {
+            navigator.geolocation.getCurrentPosition(posicion => {
+                var pos = {
+                    lat: posicion.coords.latitude,
+                    lng: posicion.coords.longitude
+                }
+                marker.setPosition(new google.maps.LatLng(posicion.coords.latitude, posicion.coords.longitude));
+                /*MOCIMIENTO DEL MAPA EN BASE A LA UBICACION*/
+                map.panTo(new google.maps.LatLng(posicion.coords.latitude, posicion.coords.longitude));
+                /*CENTRAMOS EL MAPA*/
+                map.setCenter(pos);
+            });
+
+
+        }
+
+    </script>
+    
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBL_rCP3lkgspRRE29-Nx8N9yvdcoqvRo&callback&callback=initMap"
+        async defer></script>
+</body>
+</html>
