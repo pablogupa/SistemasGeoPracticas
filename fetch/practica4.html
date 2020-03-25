@@ -1,0 +1,67 @@
+<!Doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Fecth4</title>
+    </head>
+    <body>
+        <div id="map"></div>
+        <script>
+            
+            var coordenadas ={
+                lat: 0,
+                lng: 0
+            }
+            
+            var propiedades ={
+                center: coordenadas,
+                zoom: 2
+            }
+
+
+            function crearMapa(){
+                fetch('paises.json')
+                .then(function(response){
+                    //console.log(response);
+                    response.json().then(function(datos){
+                        //console.log(datos);
+                        const map = new google.maps.Map(document.getElementById('map'),propiedades);
+                        datos.forEach(marcador =>{
+                            fetch('https://corona.lmao.ninja/countries').then(function(respuesta){
+                                //console.log(respuesta);
+                                respuesta.json().then(function(datospaises){
+                                    //console.log(datospaises);
+                                    datospaises.forEach(registro =>{
+                                        var informacion = "<strong>Pais: </strong>" + registro.country + "<strong>, casos: </strong>" + registro.cases;
+                                        var infowindow = new google.maps.InfoWindow({
+                                            content: informacion
+                                        });
+                                        if(registro.country == marcador.CountryName){
+                                            let marker = new google.maps.Marker({
+                                                map: map,
+                                                position: new google.maps.LatLng(marcador.CapitalLatitude, marcador.CapitalLongitude),
+                                                title: marcador.CountryName +' '+ registro.cases
+                                            });
+                                            marker.addListener('click', function(){
+                                                infowindow.open(map.marker);
+                                            });
+                                        }
+                                    });
+                                   
+                                });
+                            });
+                        });
+                    });
+                })
+                .catch(function(error){
+                    console.log('Ocurrio un error');
+                });
+            };
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA&callback=crearMapa" async defer></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+</html>
