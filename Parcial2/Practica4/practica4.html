@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Practica 4</title>
+    <style>
+        html, body{
+            margin: 0px;
+            padding: 0px;
+        }
+        #map {
+             width: 100%;
+        height: 640px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="map"></div>
+
+    <script>
+
+
+       function crearMapa(){
+           var styleMapType = new google.maps.StyledMapType(
+               [{ elementType : 'geometry', stylers: [{color: '#242f3e'}] },
+               { elementType : 'labels.text.stroke', stylers: [{color: '#ffffff'}] },
+               { elementType : 'labels.text.fill', stylers: [{color: '#746855'}] },
+                {featureType: 'poi', elemementType: 'labels.text.fill', stylers:[{color:'#ff0000'}]},
+                {featureType: 'poi.park', elemementType: 'geometry', stylers:[{color:'#263c3f'}]},
+                {featureType: 'road', elemementType: 'geometry.stroke', stylers:[{color:'#212a37'}]},
+                {featureType: 'road', elemementType: 'labels.text.fill', stylers:[{color:'#9ca5b3'}]}, {
+                        "featureType": "road",
+                        "elementType": "labels.text.stroke",
+                        "stylers": [
+                        {
+                            "color": "#1d2c4d"
+                        }
+                        ]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "geometry",
+                        "stylers": [
+                        {
+                            "color": "#2c6675"
+                        }
+                        ]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "geometry.stroke",
+                        "stylers": [
+                        {
+                            "color": "#255763"
+                        }
+                        ]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "labels.text.fill",
+                        "stylers": [
+                        {
+                            "color": "#b0d5ce"
+                        }
+                        ]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "labels.text.stroke",
+                        "stylers": [
+                        {
+                            "color": "#023e58"
+                        }
+                        ]
+                    } ]
+               , {name : 'Mapa oscuro'});
+            var propiedades = {
+                center: {
+                    lat: 21.152639,
+                    lng: -101.711598
+                },
+                zoom: 16,
+                mapTypeControlOptions: {mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain', 'style_map']}
+            };
+            var mapa = document.getElementById("map");
+            var map = new google.maps.Map(mapa, propiedades);
+            map.mapTypes.set('style_map', styleMapType);
+            map.setMapTypeId('style_map');
+       }
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA&callback=crearMapa" async defer></script>
+</body>
+</html>
