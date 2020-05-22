@@ -27,37 +27,99 @@
                 <h1>Eventos en Mapas</h1>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <div id="mapa1"></div>
-                <p>Evento Click en Mapa</p>
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Mapa 1
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div id="mapa1"></div>
+                    <p>Evento Click en Mapa</p>
+                </div>
+              </div>
             </div>
-            <div class="col-12 col-md-6">
-                <div id="mapa2"></div>
-                <p>Regresa al centro</p>
+            <div class="card">
+              <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Mapa 2
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div id="mapa2"></div>
+                    <p>Regresa al centro</p>
+                </div>
+              </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <div id="mapa3"></div>
-                <p>Obtiene nivel de Zoom</p>
+            <div class="card">
+              <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Mapa 3
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div id="mapa3"></div>
+                    <p>Obtiene nivel de Zoom</p>
+                </div>
+              </div>
             </div>
-            <div class="col-12 col-md-6">
-                <div id="mapa4"></div>
-                <p>Coloca marcador y mueve al centro</p>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseFour">
+                      Mapa 4
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                  <div class="card-body">
+                      <div id="mapa4"></div>
+                      <p>Coloca marcador y mueve al centro</p>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseFive">
+                  Mapa 5
+                </button>
+              </h5>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <div id="mapa5"></div>
-                <p>Obtiene coordenadas con mapsMouseEvent</p>
+            <div id="collapseFive" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+              <div class="card-body">
+                  <div id="mapa5"></div>
+                  <p>Obtiene coordenadas con mapsMouseEvent</p>
+              </div>
             </div>
-            <div class="col-12 col-md-6">
-                <div id="mapa6"></div>
-                <p>addDomListener</p>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseSix">
+                  Mapa 6
+                </button>
+              </h5>
+            </div>
+            <div id="collapseSix" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+              <div class="card-body">
+                  <div id="mapa6"></div>
+                  <p>addDomListener</p>
                 <button class="btn btn-primary" id="btnCentrar">Centrar</button>
+              </div>
             </div>
-        </div>
+          </div>
     </div>
 
     <script>
